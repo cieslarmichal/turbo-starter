@@ -8,5 +8,9 @@
     "src/**/tests/**/*",
     "src/**/*.test.ts"
   ],
-  "references": []
+  "references": [
+    {
+      "path": "../../common/contracts/tsconfig.json"
+    }
+  ]
 }

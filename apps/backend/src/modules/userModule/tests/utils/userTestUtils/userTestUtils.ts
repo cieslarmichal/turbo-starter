@@ -1,5 +1,5 @@
-import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { TestUtils } from '../../../../../../tests/testUtils.js';
+import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { type UserRawEntity } from '../../../infrastructure/databases/userDatabase/tables/userTable/userRawEntity.js';
 import { userTable } from '../../../infrastructure/databases/userDatabase/tables/userTable/userTable.js';
 import { UserTestFactory } from '../../factories/userTestFactory/userTestFactory.js';

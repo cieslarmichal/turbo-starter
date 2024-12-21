@@ -4,5 +4,9 @@
     "outDir": "./dist",
   },
   "include": ["src/**/*.ts", "tests/**/*.ts"],
-  "references": []
+  "references": [
+    {
+      "path": "../../common/contracts/tsconfig.json"
+    }
+  ]
 }

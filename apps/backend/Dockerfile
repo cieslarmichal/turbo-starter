@@ -7,7 +7,7 @@ WORKDIR /app
 
 FROM base AS builder
 
-RUN npm i -g turbo
+RUN npm i -g turbo@2.3.3
 
 COPY package*.json ./
 COPY turbo.json ./
