@@ -27,6 +27,7 @@ npm-debug.log
 .DS_Store
 Thumbs.db
 
+fly.toml
 Dockerfile
 .dockerignore
 .git

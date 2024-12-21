@@ -1,0 +1,32 @@
+app = "turbo-starter-backend"
+primary_region = "waw"
+
+[build]
+  dockerfile = "./Dockerfile"
+  build-target = "runner"
+
+[deploy]
+  strategy = "rolling"
+
+[env]
+  NODE_ENV = "production"
+
+[http_service]
+  internal_port = 5000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = false
+  min_machines_running = 1
+  processes = ["app"]
+
+[[http_service.checks]]
+  grace_period = "10s"
+  interval = "30s"
+  method = "GET"
+  timeout = "5s"
+  path = "/api/v1/health"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 512
