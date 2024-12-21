@@ -6,8 +6,8 @@ import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { ForbiddenAccessError } from '../../../../../libs/errors/forbiddenAccessError.js';
 import { UnauthorizedAccessError } from '../../../../../libs/errors/unathorizedAccessError.js';
-import { testSymbols } from '../../../../../tests/symbols.js';
-import { TestContainer } from '../../../../../tests/testContainer.js';
+import { testSymbols } from '../../../../../../tests/symbols.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { type TokenService } from '../../../../authModule/application/services/tokenService/tokenService.js';
 import { authSymbols } from '../../../../authModule/symbols.js';
 import { symbols } from '../../../symbols.js';
@@ -66,6 +66,7 @@ describe('LoginUserAction', () => {
         password: hashedPassword,
         name: createdUser.getName(),
         isEmailVerified: createdUser.getIsEmailVerified(),
+        isBlocked: createdUser.getIsBlocked(),
         role: createdUser.getRole(),
       },
     });
@@ -100,6 +101,7 @@ describe('LoginUserAction', () => {
         password: hashedPassword,
         name: createdUser.getName(),
         isEmailVerified: false,
+        isBlocked: createdUser.getIsBlocked(),
         role: createdUser.getRole(),
       },
     });
@@ -114,6 +116,42 @@ describe('LoginUserAction', () => {
 
       expect((error as ForbiddenAccessError).context).toMatchObject({
         reason: 'User email is not verified.',
+        email: createdUser.getEmail(),
+      });
+
+      return;
+    }
+
+    expect.fail();
+  });
+
+  it('throws an error if User is blocked', async () => {
+    const createdUser = userTestFactory.create();
+
+    const hashedPassword = await hashService.hash({ plainData: createdUser.getPassword() });
+
+    await userTestUtils.persist({
+      user: {
+        id: createdUser.getId(),
+        email: createdUser.getEmail(),
+        password: hashedPassword,
+        name: createdUser.getName(),
+        isEmailVerified: true,
+        isBlocked: true,
+        role: createdUser.getRole(),
+      },
+    });
+
+    try {
+      await loginUserAction.execute({
+        email: createdUser.getEmail(),
+        password: createdUser.getPassword(),
+      });
+    } catch (error) {
+      expect(error).toBeInstanceOf(ForbiddenAccessError);
+
+      expect((error as ForbiddenAccessError).context).toMatchObject({
+        reason: 'User is blocked.',
         email: createdUser.getEmail(),
       });
 

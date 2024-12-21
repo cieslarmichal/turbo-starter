@@ -55,6 +55,13 @@ export class LoginUserActionImpl implements LoginUserAction {
       });
     }
 
+    if (user.getIsBlocked()) {
+      throw new ForbiddenAccessError({
+        reason: 'User is blocked.',
+        email,
+      });
+    }
+
     const accessTokenExpiresIn = this.config.token.access.expiresIn;
 
     const accessToken = this.tokenService.createToken({

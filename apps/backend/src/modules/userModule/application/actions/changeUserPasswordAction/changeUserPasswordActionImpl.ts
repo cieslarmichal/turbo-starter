@@ -40,6 +40,13 @@ export class ChangeUserPasswordActionImpl implements ChangeUserPasswordAction {
       });
     }
 
+    if (user.getIsBlocked()) {
+      throw new OperationNotValidError({
+        reason: 'User is blocked.',
+        userId,
+      });
+    }
+
     this.passwordValidationService.validate({ password: newPassword });
 
     const hashedPassword = await this.hashService.hash({ plainData: newPassword });

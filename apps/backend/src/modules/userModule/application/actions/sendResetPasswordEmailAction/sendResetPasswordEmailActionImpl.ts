@@ -33,6 +33,16 @@ export class SendResetPasswordEmailActionImpl implements SendResetPasswordEmailA
       return;
     }
 
+    if (user.getIsBlocked()) {
+      this.loggerService.debug({
+        message: 'User is blocked.',
+        userId: user.getId(),
+        email: user.getEmail(),
+      });
+
+      return;
+    }
+
     this.loggerService.debug({
       message: 'Sending reset password email...',
       userId: user.getId(),

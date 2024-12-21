@@ -4,7 +4,7 @@ import { UserHttpController } from './api/httpControllers/userHttpController/use
 import { EmailQueueController } from './api/queueControllers/emailQueueController/emailQueueController.js';
 import { userSymbols } from './symbols.js';
 import { type DependencyInjectionContainer } from '../../libs/dependencyInjection/dependencyInjectionContainer.js';
-import { TestContainer } from '../../tests/testContainer.js';
+import { TestContainer } from '../../../tests/testContainer.js';
 import { HashServiceImpl } from './application/services/hashService/hashServiceImpl.js';
 
 describe('UserModule', () => {

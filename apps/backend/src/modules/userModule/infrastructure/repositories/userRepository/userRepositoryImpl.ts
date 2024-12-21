@@ -8,7 +8,6 @@ import {
   type UserRepository,
   type SaveUserPayload,
   type FindUserPayload,
-  type DeleteUserPayload,
   type FindUsersPayload,
 } from '../../../domain/repositories/userRepository/userRepository.js';
 import { type UserRawEntity } from '../../databases/userDatabase/tables/userTable/userRawEntity.js';
@@ -37,7 +36,7 @@ export class UserRepositoryImpl implements UserRepository {
 
   private async createUser(payload: CreateUserPayload): Promise<User> {
     const {
-      user: { email, password, name, isEmailVerified, role },
+      user: { email, password, name, isEmailVerified, isBlocked, role },
     } = payload;
 
     let rawEntities: UserRawEntity[];
@@ -52,6 +51,7 @@ export class UserRepositoryImpl implements UserRepository {
           password,
           name,
           isEmailVerified,
+          isBlocked,
           role,
         },
         '*',
@@ -181,20 +181,6 @@ export class UserRepositoryImpl implements UserRepository {
       throw new RepositoryError({
         entity: 'User',
         operation: 'count',
-        originalError: error,
-      });
-    }
-  }
-
-  public async deleteUser(payload: DeleteUserPayload): Promise<void> {
-    const { id } = payload;
-
-    try {
-      await this.databaseClient<UserRawEntity>(userTable).delete().where({ id });
-    } catch (error) {
-      throw new RepositoryError({
-        entity: 'User',
-        operation: 'delete',
         originalError: error,
       });
     }

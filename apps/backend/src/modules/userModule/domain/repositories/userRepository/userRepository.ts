@@ -14,14 +14,9 @@ export interface FindUsersPayload {
   readonly pageSize: number;
 }
 
-export interface DeleteUserPayload {
-  readonly id: string;
-}
-
 export interface UserRepository {
   saveUser(input: SaveUserPayload): Promise<User>;
   findUser(input: FindUserPayload): Promise<User | null>;
   findUsers(payload: FindUsersPayload): Promise<User[]>;
   countUsers(): Promise<number>;
-  deleteUser(input: DeleteUserPayload): Promise<void>;
 }

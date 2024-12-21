@@ -1,5 +1,5 @@
 import { UserRole } from '../../../../../../../../common/contracts/dist/src/schemas/user/userRole.js';
-import { Generator } from '../../../../../tests/generator.js';
+import { Generator } from '../../../../../../tests/generator.js';
 import { User, type UserDraft } from '../../../domain/entities/user/user.js';
 import { type UserRawEntity } from '../../../infrastructure/databases/userDatabase/tables/userTable/userRawEntity.js';
 
@@ -11,6 +11,7 @@ export class UserTestFactory {
       password: Generator.password(),
       name: Generator.fullName(),
       isEmailVerified: Generator.boolean(),
+      isBlocked: false,
       role: UserRole.user,
       ...input,
     });
@@ -23,6 +24,7 @@ export class UserTestFactory {
       password: Generator.password(),
       name: Generator.fullName(),
       isEmailVerified: Generator.boolean(),
+      isBlocked: false,
       role: UserRole.user,
       ...input,
     };

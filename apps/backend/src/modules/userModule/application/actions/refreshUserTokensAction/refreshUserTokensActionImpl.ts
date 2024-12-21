@@ -73,6 +73,13 @@ export class RefreshUserTokensActionImpl implements RefreshUserTokensAction {
       });
     }
 
+    if (user.getIsBlocked()) {
+      throw new OperationNotValidError({
+        reason: 'User is blocked.',
+        userId,
+      });
+    }
+
     const accessTokenExpiresIn = this.config.token.access.expiresIn;
 
     const accessToken = this.tokenService.createToken({

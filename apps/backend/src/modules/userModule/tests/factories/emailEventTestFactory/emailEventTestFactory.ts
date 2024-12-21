@@ -1,4 +1,4 @@
-import { Generator } from '../../../../../tests/generator.js';
+import { Generator } from '../../../../../../tests/generator.js';
 import { EmailEvent, type EmailEventState } from '../../../domain/entities/emailEvent/emailEvent.js';
 import {
   EmailEventDraft,

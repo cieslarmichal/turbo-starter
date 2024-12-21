@@ -3,8 +3,8 @@ import { beforeEach, afterEach, expect, describe, it } from 'vitest';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { RepositoryError } from '../../../../../libs/errors/repositoryError.js';
-import { Generator } from '../../../../../tests/generator.js';
-import { TestContainer } from '../../../../../tests/testContainer.js';
+import { Generator } from '../../../../../../tests/generator.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { type UserRepository } from '../../../domain/repositories/userRepository/userRepository.js';
 import { symbols } from '../../../symbols.js';
 import { UserTestFactory } from '../../../tests/factories/userTestFactory/userTestFactory.js';
@@ -41,7 +41,7 @@ describe('UserRepositoryImpl', () => {
     it('creates a User', async () => {
       const createdUser = userTestFactory.create();
 
-      const { email, name, password, isEmailVerified, role } = createdUser.getState();
+      const { email, name, password, isEmailVerified, isBlocked, role } = createdUser.getState();
 
       const user = await userRepository.saveUser({
         user: {
@@ -49,6 +49,7 @@ describe('UserRepositoryImpl', () => {
           password,
           name,
           isEmailVerified,
+          isBlocked,
           role,
         },
       });
@@ -70,6 +71,7 @@ describe('UserRepositoryImpl', () => {
             password: existingUser.password,
             name: existingUser.name,
             isEmailVerified: existingUser.isEmailVerified,
+            isBlocked: existingUser.isBlocked,
             role: existingUser.role,
           },
         });
@@ -95,6 +97,8 @@ describe('UserRepositoryImpl', () => {
 
       const isEmailVerified = Generator.boolean();
 
+      const isBlocked = Generator.boolean();
+
       user.setPassword({ password });
 
       user.setName({ name });
@@ -102,6 +106,8 @@ describe('UserRepositoryImpl', () => {
       user.setEmail({ email });
 
       user.setIsEmailVerified({ isEmailVerified });
+
+      user.setIsBlocked({ isBlocked });
 
       const updatedUser = await userRepository.saveUser({
         user,
@@ -114,6 +120,7 @@ describe('UserRepositoryImpl', () => {
         password,
         name,
         isEmailVerified,
+        isBlocked,
         role: userRawEntity.role,
       });
 
@@ -123,6 +130,7 @@ describe('UserRepositoryImpl', () => {
         password,
         name,
         isEmailVerified,
+        isBlocked,
         role: userRawEntity.role,
       });
     });
@@ -151,18 +159,6 @@ describe('UserRepositoryImpl', () => {
       const user = await userRepository.findUser({ id: createdUser.getId() });
 
       expect(user).toBeNull();
-    });
-  });
-
-  describe('Delete', () => {
-    it('deletes a User', async () => {
-      const user = await userTestUtils.createAndPersist();
-
-      await userRepository.deleteUser({ id: user.id });
-
-      const foundUser = await userTestUtils.findById({ id: user.id });
-
-      expect(foundUser).toBeUndefined();
     });
   });
 

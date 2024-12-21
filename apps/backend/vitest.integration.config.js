@@ -7,6 +7,7 @@ export default mergeConfig(
   config,
   defineConfig({
     test: {
+      globalSetup: ['./tests/globalSetup.ts'],
       pool: 'forks',
       poolOptions: {
         forks: {

@@ -1,5 +1,5 @@
 import { TestContainer } from './testContainer.js';
-import { UserDatabaseManager } from '../modules/userModule/infrastructure/databases/userDatabase/userDatabaseManager.js';
+import { UserDatabaseManager } from '../src/modules/userModule/infrastructure/databases/userDatabase/userDatabaseManager.js';
 
 export async function setup(): Promise<void> {
   try {

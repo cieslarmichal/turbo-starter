@@ -5,9 +5,9 @@ import { type Config } from '../../../../../core/config.js';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { OperationNotValidError } from '../../../../../libs/errors/operationNotValidError.js';
-import { Generator } from '../../../../../tests/generator.js';
-import { testSymbols } from '../../../../../tests/symbols.js';
-import { TestContainer } from '../../../../../tests/testContainer.js';
+import { Generator } from '../../../../../../tests/generator.js';
+import { testSymbols } from '../../../../../../tests/symbols.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { type TokenService } from '../../../../authModule/application/services/tokenService/tokenService.js';
 import { authSymbols } from '../../../../authModule/symbols.js';
 import { TokenType } from '../../../domain/types/tokenType.js';
@@ -103,6 +103,35 @@ describe('RefreshUserTokensAction', () => {
       expect((error as OperationNotValidError).context).toEqual({
         reason: 'User not found.',
         userId,
+      });
+
+      return;
+    }
+
+    expect.fail();
+  });
+
+  it('throws an error if User is blocked', async () => {
+    const user = await userTestUtils.createAndPersist({ input: { isBlocked: true } });
+
+    const refreshToken = tokenService.createToken({
+      data: {
+        userId: user.id,
+        type: TokenType.refreshToken,
+      },
+      expiresIn: Generator.number(10000, 100000),
+    });
+
+    try {
+      await refreshUserTokensAction.execute({
+        refreshToken,
+      });
+    } catch (error) {
+      expect(error).toBeInstanceOf(OperationNotValidError);
+
+      expect((error as OperationNotValidError).context).toEqual({
+        reason: 'User is blocked.',
+        userId: user.id,
       });
 
       return;

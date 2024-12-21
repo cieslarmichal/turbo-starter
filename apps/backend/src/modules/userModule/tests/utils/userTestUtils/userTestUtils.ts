@@ -1,5 +1,5 @@
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
-import { TestUtils } from '../../../../../tests/testUtils.js';
+import { TestUtils } from '../../../../../../tests/testUtils.js';
 import { type UserRawEntity } from '../../../infrastructure/databases/userDatabase/tables/userTable/userRawEntity.js';
 import { userTable } from '../../../infrastructure/databases/userDatabase/tables/userTable/userTable.js';
 import { UserTestFactory } from '../../factories/userTestFactory/userTestFactory.js';
@@ -39,6 +39,7 @@ export class UserTestUtils extends TestUtils {
         name: user.getName(),
         password: user.getPassword(),
         isEmailVerified: user.getIsEmailVerified(),
+        isBlocked: user.getIsBlocked(),
         role: user.getRole(),
       },
       '*',

@@ -4,9 +4,9 @@ import { type ChangeUserPasswordAction } from './changeUserPasswordAction.js';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { OperationNotValidError } from '../../../../../libs/errors/operationNotValidError.js';
-import { Generator } from '../../../../../tests/generator.js';
-import { testSymbols } from '../../../../../tests/symbols.js';
-import { TestContainer } from '../../../../../tests/testContainer.js';
+import { Generator } from '../../../../../../tests/generator.js';
+import { testSymbols } from '../../../../../../tests/symbols.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { type TokenService } from '../../../../authModule/application/services/tokenService/tokenService.js';
 import { authSymbols } from '../../../../authModule/symbols.js';
 import { TokenType } from '../../../domain/types/tokenType.js';
@@ -202,6 +202,40 @@ describe('ChangeUserPasswordActionImpl', () => {
 
       expect.fail();
     });
+  });
+
+  it('throws an error - when user is blocked', async () => {
+    const user = await userTestUtils.createAndPersist({ input: { isBlocked: true } });
+
+    const resetPasswordToken = tokenService.createToken({
+      data: {
+        userId: user.id,
+        type: TokenType.passwordReset,
+      },
+      expiresIn: Generator.number(10000, 100000),
+    });
+
+    const newPassword = Generator.password();
+
+    try {
+      await commandHandler.execute({
+        newPassword,
+        identifier: {
+          resetPasswordToken,
+        },
+      });
+    } catch (error) {
+      expect(error).toBeInstanceOf(OperationNotValidError);
+
+      expect((error as OperationNotValidError).context).toMatchObject({
+        reason: 'User is blocked.',
+        userId: user.id,
+      });
+
+      return;
+    }
+
+    expect.fail();
   });
 
   describe('change user password with userId', () => {

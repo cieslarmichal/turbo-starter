@@ -1,4 +1,4 @@
-import { Generator } from '../../../../../tests/generator.js';
+import { Generator } from '../../../../../../tests/generator.js';
 import { type BlacklistTokenDraft, BlacklistToken } from '../../../domain/entities/blacklistToken/blacklistToken.js';
 
 export class BlacklistTokenTestFactory {

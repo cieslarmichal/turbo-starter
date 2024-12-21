@@ -4,7 +4,7 @@ import { type UserRawEntity } from '../../../databases/userDatabase/tables/userT
 
 export class UserMapperImpl implements UserMapper {
   public mapToDomain(entity: UserRawEntity): User {
-    const { id, email, password, name, isEmailVerified, role } = entity;
+    const { id, email, password, name, isEmailVerified, isBlocked, role } = entity;
 
     return new User({
       id,
@@ -12,6 +12,7 @@ export class UserMapperImpl implements UserMapper {
       password,
       name,
       isEmailVerified,
+      isBlocked,
       role,
     });
   }

@@ -4,7 +4,7 @@ import { type DeleteUserAction } from './deleteUserAction.js';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { ResourceNotFoundError } from '../../../../../libs/errors/resourceNotFoundError.js';
-import { TestContainer } from '../../../../../tests/testContainer.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { symbols } from '../../../symbols.js';
 import { UserTestFactory } from '../../../tests/factories/userTestFactory/userTestFactory.js';
 import { UserTestUtils } from '../../../tests/utils/userTestUtils/userTestUtils.js';
@@ -43,7 +43,7 @@ describe('DeleteUserAction', () => {
 
     const foundUser = await userTestUtils.findById({ id: user.id });
 
-    expect(foundUser).toBeUndefined();
+    expect(foundUser?.isBlocked).toBe(true);
   });
 
   it('throws an error if a User with given id does not exist', async () => {
