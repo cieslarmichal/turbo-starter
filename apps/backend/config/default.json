@@ -1,0 +1,40 @@
+{
+  "aws": {
+    "accessKeyId": null,
+    "secretAccessKey": null,
+    "region": "eu-central-1"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "username": null,
+    "password": null,
+    "name": "postgres"
+  },
+  "frontendUrl": "https://turbo-starter.com",
+  "hashSaltRounds": 10,
+  "logLevel": "debug",
+  "sendGrid": {
+    "apiKey": null,
+    "senderEmail": "contact@turbo-starter.com"
+  },
+  "server": {
+    "host": "0.0.0.0",
+    "port": 5000
+  },
+  "token": {
+    "secret": null,
+    "access": {
+      "expiresIn": 86400
+    },
+    "refresh": {
+      "expiresIn": 604800
+    },
+    "emailVerification": {
+      "expiresIn": 86400
+    },
+    "resetPassword": {
+      "expiresIn": 3600
+    }
+  }
+}

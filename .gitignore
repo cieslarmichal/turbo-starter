@@ -1,0 +1,16 @@
+.idea
+node_modules
+
+dist
+*.log
+
+.eslintcache
+
+.DS_Store
+
+.vscode
+!.vscode/extensions.json
+
+.tsbuildinfo
+
+.turbo

@@ -1,0 +1,53 @@
+{
+  "name": "@apps/backend",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:dev": "node --watch --inspect --no-warnings=ExperimentalWarning --experimental-specifier-resolution=node --loader ts-node/esm/transpile-only src/index.ts",
+    "build": "tsc --build tsconfig.prod.json",
+    "build:dev": "tsc --build tsconfig.json",
+    "test:unit": "vitest .unit.test.ts --config vitest.unit.config.js",
+    "test:unit:run": "npm run test:unit -- --run",
+    "test:integration": "NODE_ENV=test vitest --config vitest.integration.config.js .integration.test.ts",
+    "test:integration:run": "npm run test:integration -- --run",
+    "lint": "eslint . -c ../../eslint.config.mjs --max-warnings 0",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.717.0",
+    "@aws-sdk/lib-storage": "3.717.0",
+    "@aws-sdk/s3-request-presigner": "3.717.0",
+    "@fastify/cors": "10.0.1",
+    "@fastify/helmet": "13.0.0",
+    "@fastify/multipart": "9.0.1",
+    "@fastify/swagger": "9.4.0",
+    "@fastify/swagger-ui": "5.2.0",
+    "@fastify/type-provider-typebox": "5.1.0",
+    "@sinclair/typebox": "0.34.13",
+    "bcrypt": "5.1.1",
+    "cockatiel": "3.2.1",
+    "config": "3.3.12",
+    "data-uri-to-buffer": "6.0.2",
+    "fastify": "5.2.0",
+    "formdata-polyfill": "4.0.10",
+    "inversify": "6.2.1",
+    "jsonwebtoken": "9.0.2",
+    "knex": "3.1.0",
+    "node-fetch": "3.3.2",
+    "pg": "8.13.1",
+    "pino": "9.5.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "9.3.0",
+    "@types/bcrypt": "5.0.2",
+    "@types/config": "3.3.5",
+    "@types/jsonwebtoken": "9.0.7"
+  },
+  "volta": {
+    "node": "22.11.0",
+    "npm": "10.9.0"
+  },
+  "engines": {
+    "node": "22.11.0"
+  }
+}
