@@ -1,5 +1,5 @@
-import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { TestUtils } from '../../../../../../tests/testUtils.js';
+import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { type BlacklistTokenRawEntity } from '../../../infrastructure/databases/userDatabase/tables/blacklistTokenTable/blacklistTokenRawEntity.js';
 import { blacklistTokenTable } from '../../../infrastructure/databases/userDatabase/tables/blacklistTokenTable/blacklistTokenTable.js';
 import { BlacklistTokenTestFactory } from '../../factories/blacklistTokenTestFactory/blacklistTokenTestFactory.js';

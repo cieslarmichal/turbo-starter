@@ -1,9 +1,9 @@
 import { beforeEach, afterEach, expect, describe, it } from 'vitest';
 
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { RepositoryError } from '../../../../../libs/errors/repositoryError.js';
-import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { type BlacklistTokenRepository } from '../../../domain/repositories/blacklistTokenRepository/blacklistTokenRepository.js';
 import { symbols } from '../../../symbols.js';
 import { BlacklistTokenTestFactory } from '../../../tests/factories/blacklistTokenTestFactory/blacklistTokenTestFactory.js';

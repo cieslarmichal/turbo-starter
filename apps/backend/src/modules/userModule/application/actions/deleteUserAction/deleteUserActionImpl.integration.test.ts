@@ -1,10 +1,10 @@
 import { beforeEach, afterEach, expect, describe, it } from 'vitest';
 
 import { type DeleteUserAction } from './deleteUserAction.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { ResourceNotFoundError } from '../../../../../libs/errors/resourceNotFoundError.js';
-import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { symbols } from '../../../symbols.js';
 import { UserTestFactory } from '../../../tests/factories/userTestFactory/userTestFactory.js';
 import { UserTestUtils } from '../../../tests/utils/userTestUtils/userTestUtils.js';

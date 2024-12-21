@@ -1,13 +1,13 @@
 import { beforeEach, afterEach, expect, it, describe } from 'vitest';
 
 import { type LoginUserAction } from './loginUserAction.js';
+import { testSymbols } from '../../../../../../tests/symbols.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { type Config } from '../../../../../core/config.js';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { ForbiddenAccessError } from '../../../../../libs/errors/forbiddenAccessError.js';
 import { UnauthorizedAccessError } from '../../../../../libs/errors/unathorizedAccessError.js';
-import { testSymbols } from '../../../../../../tests/symbols.js';
-import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { type TokenService } from '../../../../authModule/application/services/tokenService/tokenService.js';
 import { authSymbols } from '../../../../authModule/symbols.js';
 import { symbols } from '../../../symbols.js';

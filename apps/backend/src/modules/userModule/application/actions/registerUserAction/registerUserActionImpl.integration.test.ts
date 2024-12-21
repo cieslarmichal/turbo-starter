@@ -3,12 +3,12 @@ import { beforeEach, afterEach, expect, it, describe } from 'vitest';
 import { UserRole } from '@common/contracts';
 
 import { type RegisterUserAction } from './registerUserAction.js';
+import { testSymbols } from '../../../../../../tests/symbols.js';
+import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { coreSymbols } from '../../../../../core/symbols.js';
 import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
 import { OperationNotValidError } from '../../../../../libs/errors/operationNotValidError.js';
 import { ResourceAlreadyExistsError } from '../../../../../libs/errors/resourceAlreadyExistsError.js';
-import { testSymbols } from '../../../../../../tests/symbols.js';
-import { TestContainer } from '../../../../../../tests/testContainer.js';
 import { symbols } from '../../../symbols.js';
 import { UserTestFactory } from '../../../tests/factories/userTestFactory/userTestFactory.js';
 import { type UserTestUtils } from '../../../tests/utils/userTestUtils/userTestUtils.js';

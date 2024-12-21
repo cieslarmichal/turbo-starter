@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, afterEach } from 'vitest';
 
 import { type UpdateUserAction } from './updateUserAction.js';
-import { coreSymbols } from '../../../../../core/symbols.js';
-import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
-import { OperationNotValidError } from '../../../../../libs/errors/operationNotValidError.js';
 import { Generator } from '../../../../../../tests/generator.js';
 import { testSymbols } from '../../../../../../tests/symbols.js';
 import { TestContainer } from '../../../../../../tests/testContainer.js';
+import { coreSymbols } from '../../../../../core/symbols.js';
+import { type DatabaseClient } from '../../../../../libs/database/databaseClient.js';
+import { OperationNotValidError } from '../../../../../libs/errors/operationNotValidError.js';
 import { symbols } from '../../../symbols.js';
 import { type UserTestUtils } from '../../../tests/utils/userTestUtils/userTestUtils.js';
 
