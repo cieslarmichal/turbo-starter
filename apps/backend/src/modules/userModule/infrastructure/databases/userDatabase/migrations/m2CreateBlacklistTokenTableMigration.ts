@@ -8,7 +8,7 @@ export class M2CreateBlacklistTokenTableMigration implements Migration {
 
   public async up(databaseClient: DatabaseClient): Promise<void> {
     await databaseClient.schema.createTable(this.tableName, (table) => {
-      table.text('id').notNullable();
+      table.string('id', 36).notNullable();
 
       table.text('token').notNullable();
 

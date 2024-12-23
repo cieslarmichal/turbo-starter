@@ -6,19 +6,19 @@ export class M1CreateUserTableMigration implements Migration {
 
   public async up(databaseClient: DatabaseClient): Promise<void> {
     await databaseClient.schema.createTable('users', (table) => {
-      table.text('id');
+      table.string('id', 36).notNullable();
 
-      table.text('email').notNullable();
+      table.string('email', 254).notNullable();
 
-      table.text('password').notNullable();
+      table.string('password', 100).notNullable();
 
-      table.text('name').notNullable();
+      table.string('name', 100).notNullable();
 
       table.boolean('isEmailVerified').notNullable();
 
-      table.boolean('isBlocked').notNullable();
+      table.boolean('isDeleted').notNullable();
 
-      table.text('role').notNullable();
+      table.string('role', 10).notNullable();
 
       table.primary(['id']);
 
