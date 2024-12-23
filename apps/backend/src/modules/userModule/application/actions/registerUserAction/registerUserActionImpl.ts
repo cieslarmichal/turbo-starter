@@ -51,7 +51,7 @@ export class RegisterUserActionImpl implements RegisterUserAction {
         password: hashedPassword,
         name,
         isEmailVerified: false,
-        isBlocked: false,
+        isDeleted: false,
         role: UserRole.user,
       },
     });

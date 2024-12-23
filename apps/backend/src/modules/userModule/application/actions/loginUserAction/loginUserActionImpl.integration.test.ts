@@ -66,7 +66,7 @@ describe('LoginUserAction', () => {
         password: hashedPassword,
         name: createdUser.getName(),
         isEmailVerified: createdUser.getIsEmailVerified(),
-        isBlocked: createdUser.getIsBlocked(),
+        isDeleted: createdUser.getIsDeleted(),
         role: createdUser.getRole(),
       },
     });
@@ -101,7 +101,7 @@ describe('LoginUserAction', () => {
         password: hashedPassword,
         name: createdUser.getName(),
         isEmailVerified: false,
-        isBlocked: createdUser.getIsBlocked(),
+        isDeleted: createdUser.getIsDeleted(),
         role: createdUser.getRole(),
       },
     });
@@ -137,7 +137,7 @@ describe('LoginUserAction', () => {
         password: hashedPassword,
         name: createdUser.getName(),
         isEmailVerified: true,
-        isBlocked: true,
+        isDeleted: true,
         role: createdUser.getRole(),
       },
     });

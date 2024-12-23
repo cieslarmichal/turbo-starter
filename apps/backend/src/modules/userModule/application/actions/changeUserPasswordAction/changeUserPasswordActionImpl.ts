@@ -40,7 +40,7 @@ export class ChangeUserPasswordActionImpl implements ChangeUserPasswordAction {
       });
     }
 
-    if (user.getIsBlocked()) {
+    if (user.getIsDeleted()) {
       throw new OperationNotValidError({
         reason: 'User is blocked.',
         userId,

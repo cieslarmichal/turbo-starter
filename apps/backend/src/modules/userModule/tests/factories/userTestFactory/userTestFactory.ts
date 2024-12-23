@@ -11,7 +11,7 @@ export class UserTestFactory {
       password: Generator.password(),
       name: Generator.fullName(),
       isEmailVerified: Generator.boolean(),
-      isBlocked: false,
+      isDeleted: false,
       role: UserRole.user,
       ...input,
     });
@@ -24,7 +24,7 @@ export class UserTestFactory {
       password: Generator.password(),
       name: Generator.fullName(),
       isEmailVerified: Generator.boolean(),
-      isBlocked: false,
+      isDeleted: false,
       role: UserRole.user,
       ...input,
     };

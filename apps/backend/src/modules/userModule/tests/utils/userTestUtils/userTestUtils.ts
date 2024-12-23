@@ -39,7 +39,7 @@ export class UserTestUtils extends TestUtils {
         name: user.getName(),
         password: user.getPassword(),
         isEmailVerified: user.getIsEmailVerified(),
-        isBlocked: user.getIsBlocked(),
+        isDeleted: user.getIsDeleted(),
         role: user.getRole(),
       },
       '*',

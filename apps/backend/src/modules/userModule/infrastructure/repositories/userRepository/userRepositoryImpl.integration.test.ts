@@ -41,7 +41,7 @@ describe('UserRepositoryImpl', () => {
     it('creates a User', async () => {
       const createdUser = userTestFactory.create();
 
-      const { email, name, password, isEmailVerified, isBlocked, role } = createdUser.getState();
+      const { email, name, password, isEmailVerified, isDeleted, role } = createdUser.getState();
 
       const user = await userRepository.saveUser({
         user: {
@@ -49,7 +49,7 @@ describe('UserRepositoryImpl', () => {
           password,
           name,
           isEmailVerified,
-          isBlocked,
+          isDeleted,
           role,
         },
       });
@@ -71,7 +71,7 @@ describe('UserRepositoryImpl', () => {
             password: existingUser.password,
             name: existingUser.name,
             isEmailVerified: existingUser.isEmailVerified,
-            isBlocked: existingUser.isBlocked,
+            isDeleted: existingUser.isDeleted,
             role: existingUser.role,
           },
         });
@@ -97,7 +97,7 @@ describe('UserRepositoryImpl', () => {
 
       const isEmailVerified = Generator.boolean();
 
-      const isBlocked = Generator.boolean();
+      const isDeleted = Generator.boolean();
 
       user.setPassword({ password });
 
@@ -107,7 +107,7 @@ describe('UserRepositoryImpl', () => {
 
       user.setIsEmailVerified({ isEmailVerified });
 
-      user.setIsBlocked({ isBlocked });
+      user.setIsDeleted({ isDeleted });
 
       const updatedUser = await userRepository.saveUser({
         user,
@@ -120,7 +120,7 @@ describe('UserRepositoryImpl', () => {
         password,
         name,
         isEmailVerified,
-        isBlocked,
+        isDeleted,
         role: userRawEntity.role,
       });
 
@@ -130,7 +130,7 @@ describe('UserRepositoryImpl', () => {
         password,
         name,
         isEmailVerified,
-        isBlocked,
+        isDeleted,
         role: userRawEntity.role,
       });
     });

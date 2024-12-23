@@ -205,7 +205,7 @@ describe('ChangeUserPasswordActionImpl', () => {
   });
 
   it('throws an error - when user is blocked', async () => {
-    const user = await userTestUtils.createAndPersist({ input: { isBlocked: true } });
+    const user = await userTestUtils.createAndPersist({ input: { isDeleted: true } });
 
     const resetPasswordToken = tokenService.createToken({
       data: {

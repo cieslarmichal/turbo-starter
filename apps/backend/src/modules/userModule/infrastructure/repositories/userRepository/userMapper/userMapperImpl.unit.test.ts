@@ -24,7 +24,7 @@ describe('UserMapperImpl', () => {
       password: userEntity.password,
       name: userEntity.name,
       isEmailVerified: userEntity.isEmailVerified,
-      isBlocked: userEntity.isBlocked,
+      isDeleted: userEntity.isDeleted,
       role: userEntity.role,
     });
   });

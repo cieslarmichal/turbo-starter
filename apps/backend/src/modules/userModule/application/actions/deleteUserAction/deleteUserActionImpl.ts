@@ -26,7 +26,7 @@ export class DeleteUserActionImpl implements DeleteUserAction {
       });
     }
 
-    existingUser.setIsBlocked({ isBlocked: true });
+    existingUser.setIsDeleted({ isDeleted: true });
 
     await this.userRepository.saveUser({ user: existingUser });
 

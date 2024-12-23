@@ -6,7 +6,7 @@ export interface UserDraft {
   readonly password: string;
   readonly name: string;
   readonly isEmailVerified: boolean;
-  readonly isBlocked: boolean;
+  readonly isDeleted: boolean;
   readonly role: UserRole;
 }
 
@@ -15,7 +15,7 @@ export interface UserState {
   password: string;
   name: string;
   isEmailVerified: boolean;
-  isBlocked: boolean;
+  isDeleted: boolean;
   readonly role: UserRole;
 }
 
@@ -31,8 +31,8 @@ export interface SetIsEmailVerifiedPayload {
   readonly isEmailVerified: boolean;
 }
 
-export interface SetIsBlockedPayload {
-  readonly isBlocked: boolean;
+export interface SetIsDeletedPayload {
+  readonly isDeleted: boolean;
 }
 
 export interface SetNamePayload {
@@ -44,7 +44,7 @@ export class User {
   private state: UserState;
 
   public constructor(draft: UserDraft) {
-    const { id, email, password, name, isEmailVerified, isBlocked, role } = draft;
+    const { id, email, password, name, isEmailVerified, isDeleted, role } = draft;
 
     this.id = id;
 
@@ -53,7 +53,7 @@ export class User {
       password,
       name,
       isEmailVerified,
-      isBlocked,
+      isDeleted,
       role,
     };
   }
@@ -82,8 +82,8 @@ export class User {
     return this.state.isEmailVerified;
   }
 
-  public getIsBlocked(): boolean {
-    return this.state.isBlocked;
+  public getIsDeleted(): boolean {
+    return this.state.isDeleted;
   }
 
   public getState(): UserState {
@@ -108,10 +108,10 @@ export class User {
     this.state.isEmailVerified = isEmailVerified;
   }
 
-  public setIsBlocked(payload: SetIsBlockedPayload): void {
-    const { isBlocked } = payload;
+  public setIsDeleted(payload: SetIsDeletedPayload): void {
+    const { isDeleted } = payload;
 
-    this.state.isBlocked = isBlocked;
+    this.state.isDeleted = isDeleted;
   }
 
   public setName(payload: SetNamePayload): void {

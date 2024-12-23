@@ -55,7 +55,7 @@ export class LoginUserActionImpl implements LoginUserAction {
       });
     }
 
-    if (user.getIsBlocked()) {
+    if (user.getIsDeleted()) {
       throw new ForbiddenAccessError({
         reason: 'User is blocked.',
         email,

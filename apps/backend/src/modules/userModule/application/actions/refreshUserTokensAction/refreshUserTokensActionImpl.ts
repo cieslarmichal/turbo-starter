@@ -73,7 +73,7 @@ export class RefreshUserTokensActionImpl implements RefreshUserTokensAction {
       });
     }
 
-    if (user.getIsBlocked()) {
+    if (user.getIsDeleted()) {
       throw new OperationNotValidError({
         reason: 'User is blocked.',
         userId,

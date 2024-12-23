@@ -22,7 +22,7 @@ export const userDtoSchema = Type.Object({
   email: emailSchema,
   name: userNameSchema,
   isEmailVerified: Type.Boolean(),
-  isBlocked: Type.Boolean(),
+  isDeleted: Type.Boolean(),
   role: Type.Enum(UserRole),
 });
 

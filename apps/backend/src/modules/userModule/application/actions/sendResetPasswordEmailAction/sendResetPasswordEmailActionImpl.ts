@@ -33,7 +33,7 @@ export class SendResetPasswordEmailActionImpl implements SendResetPasswordEmailA
       return;
     }
 
-    if (user.getIsBlocked()) {
+    if (user.getIsDeleted()) {
       this.loggerService.debug({
         message: 'User is blocked.',
         userId: user.getId(),

@@ -43,7 +43,7 @@ describe('DeleteUserAction', () => {
 
     const foundUser = await userTestUtils.findById({ id: user.id });
 
-    expect(foundUser?.isBlocked).toBe(true);
+    expect(foundUser?.isDeleted).toBe(true);
   });
 
   it('throws an error if a User with given id does not exist', async () => {

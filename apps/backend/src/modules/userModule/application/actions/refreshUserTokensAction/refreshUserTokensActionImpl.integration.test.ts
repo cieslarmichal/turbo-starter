@@ -112,7 +112,7 @@ describe('RefreshUserTokensAction', () => {
   });
 
   it('throws an error if User is blocked', async () => {
-    const user = await userTestUtils.createAndPersist({ input: { isBlocked: true } });
+    const user = await userTestUtils.createAndPersist({ input: { isDeleted: true } });
 
     const refreshToken = tokenService.createToken({
       data: {
