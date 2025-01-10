@@ -1,23 +1,19 @@
-import globals from 'globals';
-
-import pluginJs from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
-import tsEslint from 'typescript-eslint';
-
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-
-import eslintPluginImport from 'eslint-plugin-import';
-
+import pluginJs from '@eslint/js';
 import stylistic from '@stylistic/eslint-plugin';
+import eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import globals from 'globals';
+import tsEslint from 'typescript-eslint';
 
 const compat = new FlatCompat();
 
 export default [
   {
-    files: ['**/*.ts'],
+    files: ['**/*.{ts,tsx}'],
   },
   {
-    ignores: ['**/dist/**', '**/node_modules/**'],
+    ignores: ['**/dist/**', '**/node_modules/**', '**/*.mjs'],
   },
   {
     languageOptions: { globals: { ...globals.node } },
