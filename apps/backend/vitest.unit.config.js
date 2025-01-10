@@ -3,4 +3,11 @@ import { defineConfig } from 'vitest/config';
 
 import config from '../../vitest.config.js';
 
-export default mergeConfig(config, defineConfig({}));
+export default mergeConfig(
+  config,
+  defineConfig({
+    test: {
+      include: ['**/*.unit.test.ts'],
+    },
+  }),
+);
