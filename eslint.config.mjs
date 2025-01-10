@@ -17,7 +17,7 @@ export default [
     files: ['**/*.ts'],
   },
   {
-    ignores: ['**/dist/**', '**/node_modules/**', '**/*.mjs'],
+    ignores: ['**/dist/**', '**/node_modules/**'],
   },
   {
     languageOptions: { globals: { ...globals.node } },
@@ -28,11 +28,6 @@ export default [
     },
   },
   ...compat.config({
-    env: { node: true },
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      sourceType: 'module',
-    },
     settings: {
       'import/resolver': {
         typescript: {},

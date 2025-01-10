@@ -6,7 +6,7 @@ export const finalErrorHandler = async (error: unknown): Promise<void> => {
 
   console.error({
     message: 'Application error.',
-    context: serializedError,
+    context: JSON.stringify(serializedError),
   });
 
   Application?.stop();
