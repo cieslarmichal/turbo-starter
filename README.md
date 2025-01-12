@@ -17,6 +17,8 @@
 - **Config Validation**: Environment-specific configuration validation using a [config](https://www.npmjs.com/package/config) library.
 - **Error Handling**: Robust and centralized error handling.
 - **Vitest Setup**: Preconfigured testing setup with Vitest.
+- **GitHub Actions**: CI/CD workflows for automated testing and deployment.
+- **React Frontend**: Basic React frontend with Tailwind CSS.
 
 ---
 
@@ -35,3 +37,6 @@ To tailor TurboStarter to your specific application needs, follow these steps:
 
 4. **Rename the Project**:
    - Rename the project from `TurboStarter` to your desired project name. Update the `name` field in the `package.json` file and any other references to `TurboStarter`, `turbo-starter` in the codebase.
+
+5. **Add new htpasswd file**:
+   - Add a new htpasswd file in the `apps/frontend/nginx` directory for basic authentication. You can generate a new htpasswd file using the `htpasswd` command-line tool like `htpasswd -c ./apps/frontend/nginx/.htpasswd <app-name>`.
