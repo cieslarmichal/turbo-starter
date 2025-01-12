@@ -12,6 +12,8 @@ const configSchema = Type.Object({
     secretAccessKey: Type.String({ minLength: 1 }),
     region: Type.Enum(AwsRegion),
     endpoint: Type.Optional(Type.String({ minLength: 1 })),
+    bucketName: Type.String({ minLength: 1 }),
+    cloudfrontUrl: Type.String({ minLength: 1 }),
   }),
   database: Type.Object({
     host: Type.String({ minLength: 1 }),
